@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <form action="/bookUpload" method="post" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="title" hint="Book Title"><input type="text" name="author" placeholder="Book Author"name="author">
+            
+            <p>JPG Book Thumbnail File :<input type="file" name="thumbnail_upload"></p>
+            
+            <p>ZIP file that contains book Page :<input type="file" name="zip_upload"><br>
+            ZIP file should contain: <br>
+                - 1.jpg <br>
+                - 2.jpg <br>
+                - 3.jpg <br>
+                - ...
+            </p>
+            
+            <input type="submit">
+        </form>
+    </body>
+</html>
