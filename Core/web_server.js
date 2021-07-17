@@ -67,7 +67,8 @@ module.exports = class web_server {
                     }else{
                         socket.emit('removeFailed');
                     }
-                })
+                });
+                this.main.mysql.removeBookFavRecords(data.bookID).then(_ => {});
             })
             
         });
@@ -213,18 +214,6 @@ module.exports = class web_server {
             })
         });
 
-        this.app.get('/removeFav', (req, res) => {
-            if(!req.query.userID || req.query.userID === "" || !req.query.bookID || req.query.bookID === "") return res.send({error: "Missing query"});
-            this.main.mysql.removeFav(req.query.userID, req.query.bookID).then(v => {
-                if(v){
-                    res.send(JSON.stringify({Status: "Sucessful"}));
-                    res.end();
-                }else{
-                    res.send(JSON.stringify({Status: "Failed"}));
-                    res.end();
-                }
-            })
-        })
         this.app.get('/addFav', (req, res) => {
             if(!req.query.userID || req.query.userID === "" || !req.query.bookID || req.query.bookID === "") return res.send({error: "Missing query"});
             this.main.mysql.addFav(req.query.userID, req.query.bookID).then(v => {

@@ -182,4 +182,18 @@ module.exports = class sql_helper{
         });
         return handler;
     }
+
+    //remove all favorites record of the deleted book
+    removeBookFavRecords(bookID){
+        let handler = new Promise((resolve, reject) => {
+            this.connection = mysql.createConnection(this.main.config.sqlConnection);
+            this.connection.connect();
+            this.connection.query(`DELETE FROM favorites WHERE book_id = '${bookID}'`, (err, result) => {
+                this.connection.end();
+                if(err) return resolve(false);
+                return resolve(true);
+            });
+        });
+        return handler;
+    }
 }
